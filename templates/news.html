@@ -1,0 +1,109 @@
+
+{% extends 'base.html' %}
+
+
+{% block main %}
+    <!-- Main -->
+    <div id="cappa-main">
+    
+    <!-- Header Banner -->
+    <div class="banner-header section-padding valign bg-img bg-fixed" data-overlay-dark="4" data-background="{{about.photo.url}}">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-left caption mt-90">
+                    <h5>Hotel Blog</h5>
+                    <h1>Our News</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- News  -->
+    
+    
+    
+    <section class="news section-padding bg-black">
+        <div style="margin-left: 500px;">
+            <div class="news2-sidebar row">
+        
+                <div class="col-md-6">
+                    <div class="widget search">
+                        <form>
+                            <input type="text" name="search_word" placeholder="Type here ...">
+                            <button name="search" type="submit"><i class="ti-search" aria-hidden="true"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                {% for i in page_obj%}
+                <div class="col-md-4 mb-30">
+                    <div class="item">
+                            <div class="position-re o-hidden"> <img style="height: 300px; object-fit: cover;" src="{{i.image.url}}" alt="">
+                                <div class="date">
+                                    <a href="#"> <span>Dec</span> <i>02</i> </a>
+                                </div>
+                            </div>
+                            <div  style="height: 200px;" class="con"> <span class="category">
+                                    <a href="news.html">{{i.title}}</a>
+                                </span>
+                                <h5><a href="{% url 'detail_post' i.id %}">{{i.description|truncatewords:5|safe}}</a></h5>
+                            </div>
+                        </div>
+                </div>
+                {% endfor %}
+
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+
+                    <!-- Pagination -->
+                    <ul class="news-pagination-wrap align-center mb-30 mt-30">
+                        {% if page_obj.has_previous %}
+                        <li><a href="?page={{ page_obj.previous_page_number }}"><i class="ti-angle-left"></i></a></li>
+                        {% endif%}
+                        {% for p in page_obj.paginator.page_range%}
+                         <li><a href="?page={{p}}">{{p}}</a></li>
+              
+                        {% endfor %}
+                        {% if page_obj.has_next %}
+                        <li><a href="?page={{ page_obj.next_page_number }}"><i class="ti-angle-right"></i></a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation & Booking Form -->
+    {% include 'additional_parts/booking.html' %}
+
+    <!-- Clients -->
+    <section class="clients">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 owl-carousel owl-theme">
+                    <div class="clients-logo">
+                        <a href="#0"><img src="img/clients/1.png" alt=""></a>
+                    </div>
+                    <div class="clients-logo">
+                        <a href="#0"><img src="img/clients/2.png" alt=""></a>
+                    </div>
+                    <div class="clients-logo">
+                        <a href="#0"><img src="img/clients/3.png" alt=""></a>
+                    </div>
+                    <div class="clients-logo">
+                        <a href="#0"><img src="img/clients/4.png" alt=""></a>
+                    </div>
+                    <div class="clients-logo">
+                        <a href="#0"><img src="img/clients/5.png" alt=""></a>
+                    </div>
+                    <div class="clients-logo">
+                        <a href="#0"><img src="img/clients/6.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+
+{% block main %}
+<div id="cappa-main">
+
+<div class="banner-header section-padding bg-position-bottom valign bg-img bg-fixed" data-overlay-dark="3" data-background="{{clubs.photo.url}}">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left caption mt-90">
+                <h5>Get in touch</h5>
+                <h1>{{clubs.title}}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<section class="rooms-page section-padding">
+    <div class="container">
+        <!-- project content -->
+        <div class="row" data-scroll-index="1">
+            <div class="col-md-12"> 
+                <span>
+                    <i class="star-rating"></i>
+                    <i class="star-rating"></i>
+                    <i class="star-rating"></i>
+                    <i class="star-rating"></i>
+                    <i class="star-rating"></i>
+                </span>
+                <div class="section-subtitle">Luxury Hotel</div>
+                <div class="section-title">{{clubs.title}}</div>
+                <img style="height: 300px;width: 500px;" src="{{clubs.photo.url}}" alt="">
+
+            </div>
+            <div class="col-md-8">
+                <p class="mb-30">{{clubs.description|safe}}</p>
+                
+            </div>
+           
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+
+{% block main %}
+
+<div id="cappa-main">
+
+
+    <div class="banner-header section-padding bg-position-bottom valign bg-img bg-fixed" data-overlay-dark="3" data-background="{{about.photo.url}}">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-left caption mt-90">
+                    <h5>Get in touch</h5>
+                    <h1>Booking</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+        <div style="margin-top: 100px; margin-bottom:120px;" class="container">
+            <div class="row">
+                <!-- Booking From -->
+                <div class="col-md-5 offset-md-1">
+                    <div  style="background-color: white;" class="booking-box">
+                        <div class="head-box">
+                            <h6>Rooms & Suites</h6>
+                            <h4>Hotel Booking Form</h4>
+                        </div>
+                        <div class="booking-inner clearfix">
+                            <form method="post" action="." class="form1 clearfix">
+                                {% csrf_token %}
+
+                                {{form.as_p}}
+                                <div class="row">
+                                    <div  class="col-md-12">
+                                        <div class="input1_wrapper">
+                                            <label>Full Name</label>
+                                            <div class="input1_inner">
+                                                <input  name="full_name" type="text"  placeholder="Full Name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div  class="col-md-12">
+                                        <div class="input1_wrapper">
+                                            <label>Email</label>
+                                            <div class="input1_inner">
+                                                <input  name="email" type="text"  placeholder="Email">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div  class="col-md-12">
+                                        <div class="input1_wrapper">
+                                            <label>Check in</label>
+                                            <div class="input1_inner">
+                                                <input  name="check_in" type="text" class="form-control input datepicker" placeholder="Check in">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="input1_wrapper">
+                                            <label>Check out</label>
+                                            <div class="input1_inner">
+                                                <input name="check_out" type="text" class="form-control input datepicker" placeholder="Check out">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="select1_wrapper">
+                                            <label>Adults</label>
+                                            <div class="select1_inner">
+                                                <select name="adults" class="select2 select" style="width: 100%">
+                                                    <option value="0">Adults</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="select1_wrapper">
+                                            <label>Children</label>
+                                            <div class="select1_inner">
+                                                <select name="children" class="select2 select" style="width: 100%">
+                                                    <option value="0">Children</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button  type="submit"   class="btn-form1-submit mt-15">Book</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+{% endblock%}

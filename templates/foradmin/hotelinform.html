@@ -1,0 +1,30 @@
+{% extends 'admins.html' %}
+
+
+{% block main %}
+
+
+    <div class="banner-header section-padding bg-position-bottom valign bg-img bg-fixed" data-overlay-dark="4" data-background="{{about.photo.url}}">
+        <div class="container">
+        <div class="row">
+            <div class="col-md-12 caption mt-90">
+                <h5>Luxury Hotel</h5>
+                <h1>Restaurant</h1>               
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="margin-left: 700px;">
+    <div class="col-md-8 mb-30">
+        <h3 class="mb-30">Update</h3>
+        <form action="."  method="post" >
+            {% csrf_token %}
+            <i style="color: black;">{{ form.as_p}} </i>
+           <button  type="submit" class="butn-dark mt-15"><a href="#0"><span>Update</span></a></button>
+            
+        </form>
+    </div>
+</div>
+
+{% endblock %}

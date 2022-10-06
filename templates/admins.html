@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>The Cappa Luxury Hotel</title>
+    <link rel="shortcut icon" href="{% static 'assets/img/favicon.png' %}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow&family=Barlow+Condensed&family=Gilda+Display&display=swap">
+    <link rel="stylesheet" href="{% static 'assets/css/plugins.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144098545-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-144098545-1');
+    </script>
+</head>
+
+
+
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+    <!-- Preloader -->
+    <div class="preloader-bg"></div>
+    <div id="preloader">
+        <div id="preloader-status">
+            <div class="preloader-position loader"> <span></span> </div>
+        </div>
+    </div>
+    <!-- Progress scroll totop -->
+    <div class="progress-wrap cursor-pointer">
+        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+        </svg>
+    </div>
+    <!-- Sidebar Section --><a href="#" class="js-cappa-nav-toggle cappa-nav-toggle"><i></i></a>
+    <aside id="cappa-aside">
+        <!-- Logo -->
+        <div class="cappa-logo">
+            <a href="{% url 'home' %}">
+                <!-- <img src="img/logo-dark.png" class="logo-img" alt=""> -->
+                <div> <i class="star"></i> <i class="star"></i> <i class="star"></i> <i class="star"></i> <i class="star"></i> </div>
+                <h2>The Cappa<span>Luxury Hotel</span></h2>
+            </a>
+        </div>
+        <!-- Menu -->
+        <nav class="cappa-main-menu">
+            <ul>
+                <li ><a href="{% url 'admins' %}">Admin</a></li>
+                <li><a href="{% url 'about' %}">Hotel</a></li>
+                <li><a href="{% url  'rooms' %}"> Rooms & Suites </a></li>
+                <li><a href="{% url 'restaurant' %}">Restaurant</a></li>
+                <li><a href="{% url 'clubs' %}">Clubs</a></li>
+                <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                <li ><a href="{% url 'news'%}">News</a></li>
+                <li><a href="{% url 'contact'%}">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Sidebar Footer -->
+        <div class="cappa-footer">
+            <div class="footer-column footer-contact">
+                <div class="footer-contact-info">
+                    <div class="reservations">
+                        <div class="icon"><span class="flaticon-call"></span></div>
+                        <div class="text">
+                            <p>Reservation</p> <a href="tel:855-100-4444">{{about.phone}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    
+{% block main %}
+
+{% endblock  %}
+
+{% include 'additional_parts/footer.html' %}
+
+
+
+
+
+
+
+
+    <!-- jQuery -->
+    <script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery-migrate-3.0.0.min.js' %}"></script>
+    <script src="{% static 'assets/js/modernizr-2.6.2.min.js' %}"></script>
+    <script src="{% static 'assets/js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.isotope.v3.0.2.js' %}"></script>
+    <script src="{% static 'assets/js/pace.js' %}"></script>
+    <script src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/scrollIt.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.stellar.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.magnific-popup.js' %}"></script>
+    <script src="{% static 'assets/js/YouTubePopUp.js' %}"></script>
+    <script src="{% static 'assets/js/select2.js' %}"></script>
+    <script src="{% static 'assets/js/datepicker.js' %}"></script>
+    <script src="{% static 'assets/js/smooth-scroll.min.js' %}"></script>
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+
+    <script src="{% static 'assets/js/addons/rating.js'%}"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+
+{% block main %}
+    <!-- Main -->
+    <div id="cappa-main">
+    
+    <!-- Header Banner -->
+    <div class="banner-header section-padding bg-position-bottom valign bg-img bg-fixed" data-overlay-dark="4" data-background="{{about.photo.url}}">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-left caption mt-90">
+                    <h5>Images & Videos</h5>
+                    <h1>Our Gallery</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Image Gallery -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-subtitle">Images</div>
+                    <div class="section-title">Image Gallery</div>
+                </div>
+
+                <!-- 2 columns -->
+                {%for i in photos%}
+                <div class="col-md-6 gallery-item">
+                    <a href="{{i.image.url}}" title="" class="img-zoom">
+                        <div class="gallery-box">
+                            <div class="gallery-img"> <img style="height: 255px;width:455px;object-fit: cover;" src="{{i.image.url}}" class="img-fluid mx-auto d-block" alt="work-img"> </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+    <!-- Video Gallery -->
+    <section class="section-padding bg-cream">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-subtitle">Videos</div>
+                    <div class="section-title">Video Gallery</div>
+                </div>
+                <!-- 2 columns -->
+                {% for v in video%}
+                <div class="col-md-6">
+                    <div class="vid-area mb-30">
+                        <div class="vid-icon"> <img style="height: 255px;width:455px;object-fit: cover;" src="{{v.image.url}}" alt="YouTube">
+                            <a class="video-gallery-button vid" href="{{v.video}}"> <span class="video-gallery-polygon">
+                                    <i class="ti-control-play"></i>
+                                </span> </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor%}
+                
+            </div>
+        </div>
+    </section>
+ 
+    <!-- Clients -->
+    <section class="clients">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 owl-carousel owl-theme">
+                    <div class="clients-logo">
+                        <a href="#0"><img src="img/clients/1.png" alt=""></a>
+                    </div>
+                    <div class="clients-logo">
+                        <a href="#0"><img src="img/clients/2.png" alt=""></a>
+                    </div>
+                    <div class="clients-logo">
+                        <a href="#0"><img src="img/clients/3.png" alt=""></a>
+                    </div>
+                    <div class="clients-logo">
+                        <a href="#0"><img src="img/clients/4.png" alt=""></a>
+                    </div>
+                    <div class="clients-logo">
+                        <a href="#0"><img src="img/clients/5.png" alt=""></a>
+                    </div>
+                    <div class="clients-logo">
+                        <a href="#0"><img src="img/clients/6.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+ {% endblock %}

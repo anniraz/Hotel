@@ -1,0 +1,67 @@
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="footer-column footer-about">
+                            <h3 class="footer-title">About Hotel</h3>
+                            <p class="footer-about-text">{{about.description|truncatewords:25}}</p>
+                            <div class="footer-language"> <i class="lni ti-world"></i>
+                                <select onchange="location = this.value;">
+                                    
+                                    <option value="http://duruthemes.com/">English</option>
+                                    <option value="http://duruthemes.com/">German</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 offset-md-1">
+                        <div class="footer-column footer-explore clearfix">
+                            <h3 class="footer-title">Explore</h3>
+                            <ul class="footer-explore-list list-unstyled">
+                                <li><a href="{% url 'home' %}">Home</a></li>
+                                <li><a href="{% url 'rooms' %}">Rooms & Suites</a></li>
+                                <li><a href="{% url 'restaurant' %}">Restaurant</a></li>
+                                <li><a href="{% url 'clubs' %}">Clubs</a></li>
+                                <li><a href="{% url 'about' %}">About Hotel</a></li>
+                                <li><a href="{% url 'contact' %}">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="footer-column footer-contact">
+                            <h3 class="footer-title">Contact</h3>
+                            <p class="footer-contact-text">
+                                {{about.address}}
+                            </p>
+                            <div class="footer-contact-info">
+                                <p class="footer-contact-phone"><span class="flaticon-call"></span> {{about.phone}}</p>
+                                <p class="footer-contact-mail">{{about.email}}</p>
+                            </div>
+                            <div class="footer-about-social-list"> 
+                            {% for a in about.accounts.all%}
+                            <a href="{{a.link}}"><i><img style="border-radius: 2; width:25px;"  src="{{a.icon.url}}" alt=""></i></a>
+                            {% endfor%}
+                            <img src="" style="object-fit: cover;" alt="">
+                        
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="footer-bottom-inner">
+                            <p class="footer-bottom-copy-right">© Copyright 2022 by <a href="#">DuruThemes.com</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

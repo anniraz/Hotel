@@ -1,0 +1,109 @@
+
+{% extends 'base.html' %}
+
+
+{% block main %}
+
+
+    <!-- Main -->
+    <div id="cappa-main">
+    
+    <!-- Header Banner -->
+    <div class="banner-header section-padding bg-position-bottom valign bg-img bg-fixed" data-overlay-dark="4" data-background="{{about.photo.url}}">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 caption mt-90">
+                    <h5>Luxury Hotel</h5>
+                    <h1>About Us</h1>               
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About -->
+ <!--about -->
+ <section class="about section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mb-30 animate-box" data-animate-effect="fadeInUp"> <span>
+                    <i class="star-rating"></i>
+                    <i class="star-rating"></i>
+                    <i class="star-rating"></i>
+                    <i class="star-rating"></i>
+                    <i class="star-rating"></i>
+                </span>
+                <div class="section-subtitle">{{about.title}}</div>
+                <div class="section-title">{{about.title}}</div>
+                <p>{{about.description|safe}}</p>
+
+            </div>
+            {% for i in photo_about%}
+            <div class="col col-md-3 animate-box" data-animate-effect="fadeInUp"> <img src="{{i.photo.url}}" alt="" class="mt-90 mb-30"> </div>
+                {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+    <!-- Pricing -->
+    {% include 'additional_parts/pricing.html' %}
+
+    
+        <!-- Facilties -->
+        <section class="facilties section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-subtitle">Our Services</div>
+                        <div class="section-title">Hotel Facilities</div>
+                    </div>
+                </div>
+                <div class="row">
+                    {% for f in facilities%}
+                    <div class="col-md-4">
+                        <div class="single-facility animate-box" data-animate-effect="fadeInUp"> <span ><img style="width: 50px;" src="{{f.icon.url}}" alt=""></span>
+                            <h5>{{f.title}}</h5>
+                            <p>{{f.description|safe}}</p>
+                            <div class="facility-shape"> <span class="flaticon-world"></span> </div>
+                        </div>
+                    </div>
+                    {% endfor%}
+                  
+                </div>
+            </div>
+        </section>
+        
+    <!-- Team -->
+    <section class="team section-padding bg-cream">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-subtitle">Professionals</div>
+                    <div class="section-title">Meet The Team</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 owl-carousel owl-theme">
+                    {% for t in team %}
+                    <div class="item">
+                        <div class="img"> <img src="{{t.image.url}}" alt=""> </div>
+                        <div class="info">
+                            <h6>{{t.full_name}}</h6>
+                            <p>{{t.job}}</p>
+                            <div class="social valign">
+                                <div class="full-width"> 
+                                    {% for acc in t.accounts.all%}
+                                    <a href="{{acc.link}}"><i><img style="border-radius: 2; width:25px;"  src="{{acc.icon.url}}" alt=""></i></a>
+                                    {% endfor%}
+                                   <p>{{t.email}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Testiominals -->
+    {% include 'additional_parts/testiominals.html' %}
+    {% endblock %}

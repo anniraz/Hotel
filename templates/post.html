@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+
+
+{% block main %}
+    <!-- Main -->
+    <div id="cappa-main">
+    
+    <!-- Header Banner -->
+    <div class="banner-header section-padding bg-position-center valign bg-img bg-fixed" data-overlay-dark="4" data-background="{{news.image.url}}">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-left caption mt-90">
+                    <h5><a href="#">News</a> / Post Page</h5>
+                    <h1>{{news.title}}</h1>
+                    <div class="post">
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Post -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8"> 
+                    <img src="{{news.image.url}}" class="mb-30" alt="">
+                    <h2>{{news.title}}</h2>
+                    <p>{{news.description|safe}}</p>
+                 
+  
+                    <div class="post-comment-section">
+                        <div class="row">
+                            <!-- Comment -->
+                            <div class="col-md-12">
+                                {% for i in page_obj %}
+                					{% if not i.children.all %}
+
+                                <div class="news-post-comment-wrap">
+                                    <div class="post-user-comment"> <img src="img/team/3.jpg" alt=""> </div>
+                                    <div class="post-user-content">
+                                   
+                                        <h3>{{i.full_name}}<span> {{i.time_pub}}</span></h3>
+                                        <p>{{i.text}}</p> <a class="post-repay" href="{% url 'reply'  news.id i.id  %}">Reply<i class="ti-back-left"></i></a>
+                                    </div>
+                                </div>
+                                {% elif not i.parent %}
+                                <div class="news-post-comment-wrap">
+                                    <div class="post-user-content">
+                                        <div style="background-color: rgb(246, 240, 240); border-radius: 10px;">
+                                            <p>{{i.full_name}}</p>
+                                            <p>{{i.text}}</p>
+                                        </div>
+                                        
+                                        {% for ch in i.children.all %}
+                                        <h3>{{ch.full_name}}<span> {{ch.time_pub}}</span></h3>
+                                        <p>{{ch.text}}  <a class="post-repay" href="#">Reply<i class="ti-back-left"></i></a></p>
+                                        {%endfor%}
+                                       
+                                    </div>
+                                </div>
+
+            					{% endif %}
+
+                                {%endfor%}
+                                <ul class="news-pagination-wrap align-center mb-30 mt-30">
+                                    {% if page_obj.has_previous %}
+                                    <li><a href="?page={{ page_obj.previous_page_number }}"><i class="ti-angle-left"></i></a></li>
+                                    {% endif%}
+                                    {% for p in page_obj.paginator.page_range%}
+                                     <li><a href="?page={{p}}">{{p}}</a></li>
+                          
+                                    {% endfor %}
+                                    {% if page_obj.has_next %}
+                                    <li><a href="?page={{ page_obj.next_page_number }}"><i class="ti-angle-right"></i></a></li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+
+                           
+
+                            <!-- Contact Form -->
+                            <div class="col-md-8 mb-30">
+                                <h3 class="mb-30">Leave a Reply</h3>
+                                <form  method="post" class="row">
+                                    {% csrf_token %}
+                                    
+                                    <input type="hidden" name="parent" id="contactparent" value="">
+
+                                    <div class="col-md-6">
+                                        <input type="text" name="name" id="name" placeholder="Full Name *" required="">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="email" name="email" id="email" placeholder="Email Address *" required="">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <i style="color: black;">{{parent}}</i>
+                                        <textarea name="message" id="message" cols="40" rows="4" placeholder="Your Comment *" required=""></textarea>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button  type="submit" class="butn-dark mt-15"><a href="#0"><span>Send Comment</span></a></button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="col-md-4">
+                    <div class="news2-sidebar row">
+                        <div class="col-md-12">
+                            <div class="widget search">
+                                <form>
+                                    <input type="text" name="search_word" placeholder="Type here ...">
+                                    <button name="search_button" type="submit"><i class="ti-search" aria-hidden="true"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="widget">
+                                <div class="widget-title">
+                                    <h6>Recent Posts</h6>
+                                </div>
+                                <ul class="recent">
+                                    {% for i in resent_post %}
+                                    <li>
+                                        <div class="thum"> <img style="height: 70px;width:80px" src="{{i.image.url}}" alt=""> </div> 
+                                        <a href="{% url 'detail_post' i.id %}">{{i.title}}</a>
+                                    </li>
+                                    {%endfor%}
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                      
+                        <div class="col-md-12">
+                            <div class="widget">
+                                <div class="widget-title">
+                                    <h6>Categories</h6>
+                                </div>
+                                <ul>
+                                    {% for i in categories%}
+                                    <li><a href="{% url 'post_category' i.id %}"><i class="ti-angle-right"></i>{{i.title}}</a></li>
+                                    {% endfor %}
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    
+ {% endblock%}

@@ -1,0 +1,106 @@
+
+
+
+    <!-- Main -->
+    <div id="cappa-main">
+        <!-- Slider -->
+        <header class="header slider-fade">
+            <div class="owl-carousel owl-theme">
+                <!-- The opacity on the image is made with "data-overlay-dark="number". You can change it using the numbers 0-9. -->
+                {% for i in rooms%}
+                <div class="text-center item bg-img" data-overlay-dark="3" data-background="{{i.photo.url}}">
+                    <div class="v-middle caption">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-10 offset-md-1"> <span>
+                                        <i class="star-rating"></i>
+                                        <i class="star-rating"></i>
+                                        <i class="star-rating"></i>
+                                        <i class="star-rating"></i>
+                                        <i class="star-rating"></i>
+                                    </span>
+                                    <h4>Luxury Hotel & Best Resort</h4>
+                                    <h1>Enjoy a Luxury Experience</h1>
+                                    <div class="butn-light mt-30 mb-30"> <a href="{% url 'rooms' %}" data-scroll-nav="1"><span>Rooms & Suites</span></a> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </header>
+        <!-- Booking Search -->
+        <div class="booking-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="booking-inner clearfix">
+                            <form action="." class="form1 clearfix">
+                                <div class="col1 c1">
+                                    <div class="input1_wrapper">
+                                        <label>Check in</label>
+                                        <div class="input1_inner">
+                                            <input name="check_in" type="text" class="form-control input datepicker" placeholder="Check in">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col1 c2">
+                                    <div class="input1_wrapper">
+                                        <label>Check out</label>
+                                        <div class="input1_inner">
+                                            <input name="check_out" type="text" class="form-control input datepicker" placeholder="Check out">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col2 c3">
+                                    <div class="select1_wrapper">
+                                        <label>Adults</label>
+                                        <div class="select1_inner">
+                                            <select name="adults" class="select2 select" style="width: 100%">
+                                                <option value="1">1 Adult</option>
+                                                <option value="2">2 Adults</option>
+                                                <option value="3">3 Adults</option>
+                                                <option value="4">4 Adults</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col2 c4">
+                                    <div class="select1_wrapper">
+                                        <label>Children</label>
+                                        <div class="select1_inner">
+                                            <select name="children" class="select2 select" style="width: 100%">
+                                                <option value="0">Children</option>
+                                                <option value="1">1 Child</option>
+                                                <option value="2">2 Children</option>
+                                                <option value="3">3 Children</option>
+                                                <option value="4">4 Children</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col2 c5">
+                                    <div class="select1_wrapper">
+                                        <label>Room</label>
+                                        <div class="select1_inner">
+                                            <select name="room" class="select2 select" style="width: 100%">
+                                                <option value="1">Room</option>
+                                                <option value="1">1 </option>
+                                                <option value="2">2 </option>
+                                                <option value="3">3 </option>
+                                                <option value="4">4 </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                                <div class="col3 c6">
+                                    <button name="search_button" type="submit"  class="btn-form1-submit">Check Now</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

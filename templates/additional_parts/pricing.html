@@ -1,0 +1,35 @@
+<section class="pricing section-padding bg-black">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="section-subtitle"><span>Best Prices</span></div>
+                <div class="section-title"><span>{{service_info.title}}</span></div>
+                <p class="color-2">{{service_info.description|linebreaks}}</p>
+                <div class="reservations mb-30">
+                    <div class="icon"><span class="flaticon-call"></span></div>
+                    <div class="text">
+                    <p class="color-2">For information</p> <a href=" {{about.phone}}"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="owl-carousel owl-theme">
+                    {% for i in service %}
+                    <div class="pricing-card">
+                        <img  style= "height: 200px; object-fit:  cover;" src="{{i.photo.url}}" alt="">
+                        <div class="desc">
+                            <div class="name">{{i.title}}</div>
+                            <div style="height: 50px;" class="amount">{{i.price}} som<span>/ {{i.price_per}}</span></div>
+                            <ul class="list-unstyled list">
+                                {% for b in i.points.all%}
+                                <li><i class="ti-check"></i> {{b.points}}</li>
+                                {%endfor%}
+                            </ul>
+                        </div>
+                    </div>
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

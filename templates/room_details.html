@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+
+
+{% block main %}
+<!-- Main -->
+<div id="cappa-main">
+    
+    <!-- Room Page Slider -->
+    <div class="banner-header section-padding bg-position-bottom valign bg-img bg-fixed" data-overlay-dark="4" data-background="{{rooms.photo.url}}">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 caption mt-90">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Room Content -->
+    <section class="rooms-page section-padding">
+        <div class="container">
+            <!-- project content -->
+            <div class="row" data-scroll-index="1">
+                <div class="col-md-12"> 
+                    <span>
+                        <i class="star-rating"></i>
+                        <i class="star-rating"></i>
+                        <i class="star-rating"></i>
+                        <i class="star-rating"></i>
+                        <i class="star-rating"></i>
+                    </span>
+                    <div class="section-subtitle">Luxury Hotel</div>
+                    <div class="section-title">{{rooms.room}}</div>
+                </div>
+                <div class="col-md-8">
+                    <p class="mb-30">{{rooms.description|safe}}</p>
+                    
+                </div>
+                <div class="col-md-3 offset-md-1">
+                    <h6>Amenities</h6>
+                    <ul class="list-unstyled page-list mb-30">
+                        <li>
+                            <div class="page-list-icon"> <span class="flaticon-group"></span> </div>
+                            <div class="page-list-text">
+                                <p>for {{rooms.for_persons}} Persons</p>
+                            </div>
+                        </li>
+                        {% for i in facilities%}
+                        <li>
+                            <div class="page-list-icon"><img style="height: 20px;" src="{{i.icon.url}}" alt=""> <span></span> </div>
+                            <div class="page-list-text">
+                                <p>{{i.title}}</p>
+                            </div>
+                        </li>
+                        {%endfor%}
+
+             
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Similiar Room -->
+    <section class="rooms1 section-padding bg-black">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-subtitle"><span>Luxury Hotel</span></div>
+                    <div class="section-title"><span>Similar Rooms</span></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="owl-carousel owl-theme">
+                        {% for i in similar %}
+                        <div class="item">
+                            <div class="position-re o-hidden"> <img style="height: 390px; width: 400px; object-fit: cover;" src="{{i.photo.url}}" alt=""> </div> <span class="category"><a href="rooms2.html">Book</a></span>
+                            <div class="con">
+                                <h6><a href="room-details.html">{{i.price}} som/ Night</a></h6>
+                                <h5><a href="{% url 'room_detail' i.id %}">{{i.room}}</a> </h5>
+                                <div class="line"></div>
+                                <div class="row facilities">
+                                    <div class="col col-md-7">
+                                        <ul>
+                                            <li><i class="flaticon-bed"></i></li>
+                                            <li><i class="flaticon-bath"></i></li>
+                                            <li><i class="flaticon-breakfast"></i></li>
+                                            <li><i class="flaticon-towel"></i></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col col-md-5 text-right">
+                                        <div class="permalink"><a href="room-details.html">Details <i class="ti-arrow-right"></i></a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {%endfor%}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Pricing -->
+    {% include 'additional_parts/pricing.html' %}
+
+    <!-- Reservation & Booking Form -->
+    {% include 'additional_parts/booking.html' %}
+
+    <!-- Clients -->
+    <section class="clients">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 owl-carousel owl-theme">
+                    <div class="clients-logo">
+                        <a href="#0"><img src="img/clients/1.png" alt=""></a>
+                    </div>
+                    <div class="clients-logo">
+                        <a href="#0"><img src="img/clients/2.png" alt=""></a>
+                    </div>
+                    <div class="clients-logo">
+                        <a href="#0"><img src="img/clients/3.png" alt=""></a>
+                    </div>
+                    <div class="clients-logo">
+                        <a href="#0"><img src="img/clients/4.png" alt=""></a>
+                    </div>
+                    <div class="clients-logo">
+                        <a href="#0"><img src="img/clients/5.png" alt=""></a>
+                    </div>
+                    <div class="clients-logo">
+                        <a href="#0"><img src="img/clients/6.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  {% endblock %}

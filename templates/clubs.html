@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+
+{% block main %}
+    <!-- Main -->
+    <div id="cappa-main">
+    
+    <!-- Spa-Wellness Slider -->
+    <header class="header slider">
+        <div class="owl-carousel owl-theme">
+            {% for i in clubs_image %}
+            <!-- The opacity on the image is made with "data-overlay-dark="number". You can change it using the numbers 0-9. -->
+            <div class="text-center item bg-img" data-overlay-dark="3" data-background="{{i.photo.url}}"></div>
+            {%endfor%}
+        </div>
+        <!-- arrow down -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="arrow bounce text-center">
+                    <a href="#" data-scroll-nav="1" class=""> <i class="ti-arrow-down"></i> </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Spa-Wellness Content -->
+    <section class="rooms-page section-padding">
+        <div class="container">
+            <div class="row" data-scroll-index="1">
+                <div class="col-md-12"> <span><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i></span>
+                    <div class="section-subtitle">So Many Ways to Unwind</div>
+                    <div class="section-title">{{clubs_info.title}}</div>
+                    <p class="mb-30">{{clubs_info.description|safe}}</p>
+                </div>
+                <div class="col-md-12">
+                    <div class="reservations">
+                        <div class="icon"><span class="flaticon-call"></span></div>
+                        <div class="text">
+                            <p>Reservations</p> <a href="tel:855-100-4444">{{about.phone}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services -->
+
+    {% include 'additional_parts/clubs_list.html' %}
+
+    <!-- Faqs -->
+    <section class="section-padding bg-cream">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-subtitle">F.A.Qs</div>
+                    <div class="section-title">Clubs Etiquette</div>
+                </div>
+                <div class="col-md-12">
+                    <ul class="accordion-box clearfix">
+                        {% for i in etiquette %}
+                        <li class="accordion block">
+                            <div class="acc-btn">{{i.title}}</div>
+                            <div class="acc-content">
+                                <div class="content">
+                                    <div class="text">{{i.description}}</div>
+                                </div>
+                            </div>
+                        </li>
+                        {%endfor%}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Testiominals -->
+    {% include 'additional_parts/testiominals.html' %}
+
+    
+ {% endblock %}

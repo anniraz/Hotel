@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+
+
+{% block main %}
+{% include 'additional_parts/header_slider.html' %}
+
+<!--about -->
+        <section class="about section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mb-30 animate-box" data-animate-effect="fadeInUp"> <span>
+                            <i class="star-rating"></i>
+                            <i class="star-rating"></i>
+                            <i class="star-rating"></i>
+                            <i class="star-rating"></i>
+                            <i class="star-rating"></i>
+                        </span>
+                        <div class="section-subtitle">{{about.title}}</div>
+                        <div class="section-title">{{about.title}}</div>
+                        <p>{{about.description|safe}}</p>
+    
+                    </div>
+                    {% for i in photo_about%}
+                    <div class="col col-md-3 animate-box" data-animate-effect="fadeInUp"> <img src="{{i.photo.url}}" alt="" class="mt-90 mb-30"> </div>
+                        {% endfor %}
+                </div>
+            </div>
+        </section>
+
+<!-- rooms -->
+    <section class="rooms1 section-padding bg-cream" data-scroll-index="1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-subtitle">The Cappa Luxury Hotel</div>
+                        <div class="section-title">Rooms & Suites</div>
+                    </div>
+                </div>
+                <div class="row">
+                    {% for r in rooms3 %}
+                    <div class="col-md-4">
+                        <div class="item">
+                            <div class="position-re o-hidden"> <img style="height: 255px;" src="{{r.photo.url}}" alt=""> </div> <span class="category"><a href="{% url 'reservation' r.id  %}">Book</a></span>
+                            <div class="con">
+                                <h6><a href="{% url 'room_detail' r.id%}">{{r.price}}som / Night</a></h6>
+                                <h5><a href="{% url 'room_detail' r.id%}">{{r.room}}</a> </h5>
+                                <div class="line"></div>
+                                <div class="row facilities">
+                                    <div class="col col-md-7">
+                                        <ul>
+                                            <li><i class="flaticon-bed"></i></li>
+                                            <li><i class="flaticon-bath"></i></li>
+                                            <li><i class="flaticon-breakfast"></i></li>
+                                            <li><i class="flaticon-towel"></i></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col col-md-5 text-right">
+                                        <div class="permalink"><a href="{% url 'room_detail' r.id%}">Details <i class="ti-arrow-right"></i></a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor%}
+                    {% for r in photo_about %}
+                    <div class="col-md-6">
+                        <div class="item" style="height: 355px;">
+                            <div class="position-re o-hidden"> <img style="height: 300;" src="{{r.photo.url}}"  alt=""> </div> <span class="category"><a href="{% url 'reservation' r.id  %}">Book</a></span>
+                            <div class="con">
+                                <h6><a href="{% url 'room_detail' r.id%}">{{r.price}}som / Night</a></h6>
+                                <h5><a href="{% url 'room_detail' r.id%}">{{r.room}}</a></h5>
+                                <div class="line"></div>
+                                <div class="row facilities">
+                                    <div class="col col-md-7">
+                                        <ul>
+                                            <li><i class="flaticon-bed"></i></li>
+                                            <li><i class="flaticon-bath"></i></li>
+                                            <li><i class="flaticon-breakfast"></i></li>
+                                            <li><i class="flaticon-towel"></i></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col col-md-5 text-right">
+                                        <div class="permalink"><a href="{% url 'room_detail' r.id%}">Details <i class="ti-arrow-right"></i></a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor%}
+                </div>
+            </div>
+        </section>
+
+
+     <!-- Pricing -->
+     {% include 'additional_parts/pricing.html' %}
+
+        <!-- Promo Video -->
+        <section class="video-wrapper video section-padding bg-img bg-fixed" data-overlay-dark="3" data-background="{{about.photo.url}}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2 text-center"> <span><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i><i class="star-rating"></i></span>
+                        <div class="section-subtitle"><span>The Cappa Luxury Hotel</span></div>
+                        <div class="section-title"><span>Promotional Video</span></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="text-center col-md-12">
+                        <a class="vid" href="{{about.video}}">
+                            <div class="vid-butn"> <span class="icon">
+                                    <i class="ti-control-play"></i>
+                                </span> </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Facilties -->
+        <section class="facilties section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-subtitle">Our Services</div>
+                        <div class="section-title">Hotel Facilities</div>
+                    </div>
+                </div>
+                <div class="row">
+                    {% for f in facilities%}
+                    <div class="col-md-4">
+                        <div class="single-facility animate-box" data-animate-effect="fadeInUp"> <span ><img style="width: 50px;" src="{{f.icon.url}}" alt=""></span>
+                            <h5>{{f.title}}</h5>
+                            <p>{{f.description|safe}}</p>
+                            <div class="facility-shape"> <span class="flaticon-world"></span> </div>
+                        </div>
+                    </div>
+                    {% endfor%}
+                  
+                </div>
+            </div>
+        </section>
+        
+        <!-- Services -->
+        {% include 'additional_parts/clubs_list.html' %}
+
+    
+
+        <!-- News -->
+        <section class="news section-padding bg-black">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="section-subtitle"><span>Hotel Blog</span></div>
+                                <div class="section-title"><span>Our News</span></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="owl-carousel owl-theme">
+                                    {% for n in news %}
+                                    <div class="item">
+                                        <div class="position-re o-hidden">  <img style="height: 300px; object-fit: cover;" src="{{n.image.url}}" alt="">
+                                            <div class="date">
+                                                <a href="{% url 'detail_post' n.id %}"> <span>{{n.time}}</span>  </a>
+                                            </div>
+                                        </div>
+                                        <div  style="height: 200px;" class="con"> <span class="category">
+                                                <a href="{% url 'detail_post' n.id %}">{{n.title}}</a>
+                                            </span>
+                                            <h5><a  href="{% url 'detail_post' n.id %}">{{n.description|safe|truncatewords:5}}</a></h5>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+         </section>
+
+
+
+{% endblock  %}

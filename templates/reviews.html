@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+
+{% block main %}
+<div id="cappa-main">
+    
+    <!-- Header Banner -->
+    <div class="banner-header section-padding bg-position-bottom valign bg-img bg-fixed" data-overlay-dark="3" data-background="{{about.photo.url}}">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-left caption mt-90">
+                    <h1>Reviews</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div style="margin-top: 100px; margin-bottom:120px;" class="container">
+        <div class="col-md-12">
+            {% for i in page_obj %}
+
+            <div class="news-post-comment-wrap">
+                <div class="post-user-comment"> <img src="img/team/3.jpg" alt=""> </div>
+                <div class="post-user-content">
+               
+                    <h5>{{i.full_name}}</h5><span> {{i.time_pub}}</span>
+                    <p style="color: rgb(41, 39, 39);">{{i.text}}</p> </a>
+                    <span>
+                        {% if i.rating == 5%}
+                        <i class="star-rating"></i>
+                        <i class="star-rating"></i>
+                        <i class="star-rating"></i>
+                        <i class="star-rating"></i>
+                        <i class="star-rating"></i>
+                        {% elif i.rating == 4 %}
+                        <i class="star-rating"></i>
+                        <i class="star-rating"></i>
+                        <i class="star-rating"></i>
+                        <i class="star-rating"></i>
+                        {% elif i.rating == 3%}
+                        <i class="star-rating"></i>
+                        <i class="star-rating"></i>
+                        <i class="star-rating"></i>
+                        {% elif i.rating == 2 %}
+                        <i class="star-rating"></i>
+                        <i class="star-rating"></i>
+                        {% elif i.rating == 1 %}
+                        <i class="star-rating"></i>
+                        {%endif%}
+                    </span>
+                        
+                </div>
+            </div>
+     
+
+            {%endfor%}
+            <ul class="news-pagination-wrap align-center mb-30 mt-30">
+                {% if page_obj.has_previous %}
+                <li><a href="?page={{ page_obj.previous_page_number }}"><i class="ti-angle-left"></i></a></li>
+                {% endif%}
+                {% for p in page_obj.paginator.page_range%}
+                 <li><a href="?page={{p}}">{{p}}</a></li>
+      
+                {% endfor %}
+                {% if page_obj.has_next %}
+                <li><a href="?page={{ page_obj.next_page_number }}"><i class="ti-angle-right"></i></a></li>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-md-5 offset-md-1">
+                <div  style="background-color: white;" class="booking-box">
+                    <div class="head-box">
+                        <h6>luxury hotel</h6>
+                        <h4>Review Form</h4>
+                    </div>
+                <form action="." method="post">
+                    {% csrf_token %}
+
+                    {{form.as_p}}
+                    <button  type="submit" class="butn-dark mt-15"><a href="#0"><span>Add Review</span></a></button>
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
