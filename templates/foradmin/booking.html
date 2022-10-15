@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-md-12 caption mt-90">
                 <h5>Luxury Hotel</h5>
-                <h1>Contact</h1>               
+                <h1>Booked rooms</h1>               
             </div>
         </div>
     </div>
@@ -19,15 +19,14 @@
 <section class="facilties section-padding">
 
 <div class="row">
-    {% for i in contact %}
+    {% for i in books %}
     <div class="col-md-4">
-        <div class="single-facility animate-box" data-animate-effect="fadeInUp"> <span ><img style="width: 90px;" src="#" alt=""></span>
-            <h5>name: {{i.name}}</h5> <p>email:{{i.email}} </p>
-            <p>phone: {{i.phone}}</p>
+        <div class="single-facility animate-box" data-animate-effect="fadeInUp"> <span ><img style="width: 90px;" src="{{i.room.photo.url}}" alt=""></span>
+            <h5>{{i.full_name}}</h5> <p>check in: {{i.check_in}} </p>
+            <p>check out: {{i.check_out}}</p>
             <p>email: {{i.email}} </p>
-            <p>subject: {{i.subject}}</p>
-            <p>message: {{i.message}}</p>
-            <a href="{% url 'contact_delete' i.id %}"><p style="color:red">Delete</p></a>
+            <p>№{{i.room.room_number}}</p>
+            <a href="{% url 'delete_booking' i.id %}"><p style="color:red">Delete</p></a>
             <div class="facility-shape"> <span class="flaticon-world"></span> </div>
         </div>
     </div>

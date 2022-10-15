@@ -1,6 +1,8 @@
 import datetime
 from django.shortcuts import render
+from django.core.paginator import Paginator
 from django.db.models import Q
+
 
 from apps.home.models import AboutHotel, ExtraServices, ExtraServicesInfo,HotelFacilities
 from apps.rooms.models import Rooms
@@ -44,12 +46,15 @@ def rooms(request):
         service_info=ExtraServicesInfo.objects.latest('id')
         about=AboutHotel.objects.latest('id')
         all_rooms=Rooms.objects.all()[3:]
+        paginator=Paginator(all_rooms,6)
+        page_number=request.GET.get('page')
+        page_obj=paginator.get_page(page_number)
         rooms3=Rooms.objects.all()[:3]
         service=ExtraServices.objects.all()
     
         context={
                 'about':about,
-                'all_rooms':all_rooms,
+                'all_rooms':page_obj,
                 'rooms3':rooms3,
                 'service':service,
                 'service_info':service_info
@@ -96,3 +101,7 @@ def roomsDetail(request,id):
         'service_info':service_info
             }
     return render(request,'room_details.html',context)
+
+
+
+    

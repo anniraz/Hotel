@@ -1,5 +1,8 @@
 import datetime
 from django.shortcuts import render,redirect
+from django.views import generic
+from django.urls import reverse_lazy
+
 from apps.booking.models import HotelBooking
 from apps.home.models import AboutHotel,ExtraServices,ExtraServicesInfo
 from apps.rooms.models import Rooms
@@ -52,3 +55,26 @@ def booking(request,id):
             return render(request, 'reservation.html', context)
             
 
+
+
+class HBookingListView(generic.ListView):
+    model=HotelBooking
+    template_name='foradmin/booking.html'
+
+    def get_context_data(self, **kwargs):
+        context= super().get_context_data(**kwargs)
+        context['about']=AboutHotel.objects.latest('id')
+        context['books']=HotelBooking.objects.all()
+        return context
+
+class HBookingDeleteView(generic.DeleteView):
+    model=HotelBooking
+    template_name='foradmin/delete.html'
+    success_url=reverse_lazy('booked_list')
+
+
+    def get_context_data(self, **kwargs):
+        context= super().get_context_data(**kwargs)
+        context['about']=AboutHotel.objects.latest('id')
+        context['books']=HotelBooking.objects.all()
+        return context

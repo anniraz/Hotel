@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+
+{% block main %}
+<div id="cappa-main">
+
+<div class="banner-header section-padding bg-position-bottom valign bg-img bg-fixed" data-overlay-dark="3" data-background="{{about.photo.url}}">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left caption mt-90">
+                <h5>Admin Panel</h5>
+                <h1>Admin</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <section class="facilties section-padding">
+        <div class="container">
+            <div class="row">
+            <div class="col-md-12">
+                <div class="section-subtitle">Our Services</div>
+                <div class="section-title">Admin page</div><p> <a href="{% url 'admins_logout' %}">logout </a> </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="single-facility animate-box" data-animate-effect="fadeInUp"> <span ><img style="width: 50px;" src="{{f.icon.url}}" alt=""></span>
+                    <h5>About hotel</h5>
+                    <a href="{% url 'update' about.id %}"><p>change hotel details</p></a>
+                    <div class="facility-shape"> <span class="flaticon-world"></span> </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="single-facility animate-box" data-animate-effect="fadeInUp"> <span ><img style="width: 50px;" src="{{f.icon.url}}" alt=""></span>
+                    <h5>Rooms</h5>
+                    <a href="{% url 'rooms_all' %}"><p>change room details</p></a>
+                    <div class="facility-shape"> <span class="flaticon-world"></span> </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="single-facility animate-box" data-animate-effect="fadeInUp"> <span ><img style="width: 50px;" src="{{f.icon.url}}" alt=""></span>
+                    <h5>Restaurant</h5>
+                   <a href="{% url 'restaurant_update' restaurant.id  %}"><p>change restaurant details</p></a> 
+                    <div class="facility-shape"> <span class="flaticon-world"></span> </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="single-facility animate-box" data-animate-effect="fadeInUp"> <span ><img style="width: 50px;" src="{{f.icon.url}}" alt=""></span>
+                    <h5>Clubs</h5>
+                  <a href="{% url 'clubs_all' %}">  <p>change clubs details</p></a>
+                    <div class="facility-shape"> <span class="flaticon-world"></span> </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="single-facility animate-box" data-animate-effect="fadeInUp"> <span ><img style="width: 50px;" src="{{f.icon.url}}" alt=""></span>
+                    <h5>Gallery</h5>
+                   <a href="{% url 'photo_gallery' %}"> <p>change gallery details</p></a>
+                    <div class="facility-shape"> <span class="flaticon-world"></span> </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="single-facility animate-box" data-animate-effect="fadeInUp"> <span ><img style="width: 50px;" src="{{f.icon.url}}" alt=""></span>
+                    <h5>News</h5>
+                   <a href="{% url 'news_all' %}"> <p>change news detail</p></a>
+                    <div class="facility-shape"> <span class="flaticon-world"></span> </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="single-facility animate-box" data-animate-effect="fadeInUp"> <span ><img style="width: 50px;" src="{{f.icon.url}}" alt=""></span>
+                    <h5>Booking</h5>
+                   <a href="{% url 'booked_list' %}"> <p>booking detail</p></a>
+                    <div class="facility-shape"> <span class="flaticon-world"></span> </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="single-facility animate-box" data-animate-effect="fadeInUp"> <span ><img style="width: 50px;" src="{{f.icon.url}}" alt=""></span>
+                    <h5>Contacts</h5>
+                   <a href="{% url 'all_messages' %}"> <p>messages</p></a>
+                    <div class="facility-shape"> <span class="flaticon-world"></span> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

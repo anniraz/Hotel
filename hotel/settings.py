@@ -18,15 +18,16 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+    # 'modeltranslation',
 
 INSTALLED_APPS = [
-    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'drf_yasg',
     # ckeditor
     'ckeditor',
     'ckeditor_uploader',
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
 
     # drf
     'rest_framework',
+    'django_filters',
     
     # apps
     'apps.home',
@@ -50,14 +52,6 @@ INSTALLED_APPS = [
 ]
 
 
-
-REST_FRAMEWORK = {
-    # for pagination
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 1,
-
-  
-}
 
 
 
@@ -124,8 +118,18 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/4.0/topics/i18n/
+
+REST_FRAMEWORK = {
+    # for pagination
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 3,
+
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+
+  
+}
+
+
 
 LANGUAGE_CODE = 'en-us'
 
@@ -137,20 +141,20 @@ USE_TZ = True
 
 
 
-gettext=lambda s:s 
+# gettext=lambda s:s 
 
-LANGUAGES = (
-    ('ru', gettext('Russian')),
-    ('en', gettext('English')),
-)
+# LANGUAGES = (
+#     ('ru', gettext('Russian')),
+#     ('en', gettext('English')),
+# )
 
-MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
+# MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
 
-MODELTRANSLATION_TRANSLATION_REGISTRY = 'apps.home.translation'
+# MODELTRANSLATION_TRANSLATION_REGISTRY = 'apps.home.translation'
 
-LOCALE_PATHS=(
-    os.path.join(BASE_DIR,'locale'),
-        )
+# LOCALE_PATHS=(
+#     os.path.join(BASE_DIR,'locale'),
+#         )
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/

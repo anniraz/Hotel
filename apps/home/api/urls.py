@@ -12,7 +12,7 @@ router.register(
     viewset=HotelFacilitiesApiViewset
 )
 router.register(
-    prefix='furteam',
+    prefix='ourteam',
     viewset=OurTeamApiViewset
 )
 

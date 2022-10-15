@@ -6,14 +6,16 @@
                     <div class="col-md-4">
                         <div class="footer-column footer-about">
                             <h3 class="footer-title">About Hotel</h3>
-                            <p class="footer-about-text">{{about.description|truncatewords:25}}</p>
-                            <div class="footer-language"> <i class="lni ti-world"></i>
+                            <p class="footer-about-text">{{about.description|truncatewords:25|safe}}</p>
+                            
+                            <!-- <div class="footer-language"> <i class="lni ti-world"></i>
                                 <select onchange="location = this.value;">
                                     
                                     <option value="http://duruthemes.com/">English</option>
                                     <option value="http://duruthemes.com/">German</option>
                                 </select>
-                            </div>
+                            </div> -->
+
                         </div>
                     </div>
                     <div class="col-md-3 offset-md-1">

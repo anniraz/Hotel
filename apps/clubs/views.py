@@ -1,8 +1,12 @@
 from django.shortcuts import render
+from django.views import generic
+from django.urls import reverse_lazy
+
 
 from apps.clubs.models import Clubs,ClubsInfo, SpaEtiquette
 from apps.home.models import AboutHotel,Reviews
 
+from apps.clubs.forms import *
 
 
 def clubs(request):
@@ -37,3 +41,54 @@ def clubs_details(request,id):
         'clubs':clubs
     }
     return render(request,'clubs_detail.html',context)
+
+
+class ClubsListView(generic.ListView):
+    model=Clubs
+    template_name='foradmin/clubs.html'
+    
+    def get_context_data(self, **kwargs):
+        context= super().get_context_data(**kwargs)
+        context['about']=AboutHotel.objects.latest('id')
+        context['clubs']=Clubs.objects.all()
+        return context
+
+class ClubsUpdateView(generic.UpdateView):
+    model=Clubs
+    template_name='foradmin/club_update.html'
+    form_class=ClubsForm
+    success_url=reverse_lazy('clubs_all')
+
+    
+    def get_context_data(self, **kwargs):
+        context= super().get_context_data(**kwargs)
+        context['about']=AboutHotel.objects.latest('id')
+        context['clubs']=Clubs.objects.all()
+        return context
+
+
+class ClubsCreateView(generic.CreateView):
+    model=Clubs
+    template_name='foradmin/create.html'
+    form_class=ClubsForm
+    success_url=reverse_lazy('clubs_all')
+
+    
+    def get_context_data(self, **kwargs):
+        context= super().get_context_data(**kwargs)
+        context['about']=AboutHotel.objects.latest('id')
+        context['clubs']=Clubs.objects.all()
+        return context
+
+class ClubsDelateView(generic.DeleteView):
+    model=Clubs
+    template_name='foradmin/delete.html'
+    success_url=reverse_lazy('clubs_all')
+
+    # form_class=ClubsForm
+    
+    def get_context_data(self, **kwargs):
+        context= super().get_context_data(**kwargs)
+        context['about']=AboutHotel.objects.latest('id')
+        # context['clubs']=Clubs.objects.all()
+        return context

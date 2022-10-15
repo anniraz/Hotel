@@ -1,6 +1,12 @@
 import datetime 
 
 from django.shortcuts import render,redirect
+from django.views import generic
+from django.urls import reverse_lazy
+from django.contrib.auth import  authenticate, login
+from django.contrib import messages
+
+
 from django.db.models import Q
 from django.core.paginator import Paginator
 
@@ -8,15 +14,12 @@ from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 
 from apps.home.models import AboutHotel, ContactUs,HotelFacilities,OurTeam,PhotoGallery, Reviews,VideoGallery,ExtraServices,ExtraServicesInfo
+from apps.restaurant.models import Restuarant
 from apps.rooms.models import Rooms
 from apps.clubs.models import Clubs
 from apps.news.models import News
 from apps.booking.models import HotelBooking
-
-from apps.home.forms import ReviewForm,AboutForm
-from django.views import generic
-
-
+from apps.home.forms import *
 
 def index(request):
 
@@ -82,8 +85,6 @@ def index(request):
         # class="col-md-6 p-0 bg-cream valign animate-box" data-animate-effect="fadeInRight"
         return render(request,'index.html',context)
 
-
-
 def about(request):
     about=AboutHotel.objects.latest('id')
     facilities=HotelFacilities.objects.all()
@@ -107,8 +108,6 @@ def about(request):
     }
     return render(request,'about.html',context)
 
-
-
 def gallery(request):
     about=AboutHotel.objects.latest('id')
     photos=PhotoGallery.objects.all()
@@ -120,7 +119,6 @@ def gallery(request):
 
     }
     return render(request,'gallery.html',context)
-
 
 def contact(request):       
 
@@ -196,7 +194,6 @@ def contact(request):
 
             return render(request,'contact.html',context)
 
-
 def reviews(request):
     about=AboutHotel.objects.latest('id')
     review=Reviews.objects.all()
@@ -219,7 +216,6 @@ def reviews(request):
     return render(request,'reviews.html',context)
 
 
-
 def admin(request):
     about=AboutHotel.objects.latest('id')
     if request.method == 'POST':
@@ -230,8 +226,129 @@ def admin(request):
     return render(request,'foradmin/hotelinform.html',locals())
 
 
+def adminpage(request):
+    about=AboutHotel.objects.latest('id')
+    restaurant=Restuarant.objects.latest('id')
+    return render(request,'foradmin.html',locals())
+
 
 class HUpdate(generic.UpdateView):
     model=AboutHotel
     template_name='foradmin/hotelinform.html'
     form_class = AboutForm
+
+    def get_context_data(self, **kwargs):
+        context= super().get_context_data(**kwargs)
+        context['about']=AboutHotel.objects.latest('id')
+        return context
+
+
+class RoomListView(generic.ListView):
+    model=Rooms
+    template_name='foradmin/rooms.html'
+    
+    def get_context_data(self, **kwargs):
+        context= super().get_context_data(**kwargs)
+        context['about']=AboutHotel.objects.latest('id')
+        context['all_rooms']=Rooms.objects.all()
+        return context
+
+
+class RUpdateView(generic.UpdateView):
+    model= Rooms
+    template_name='foradmin/room_update.html'
+    form_class=RoomsForm
+    success_url=reverse_lazy('rooms_all')
+
+    def get_context_data(self, **kwargs):
+        context= super().get_context_data(**kwargs)
+        context['about']=AboutHotel.objects.latest('id')
+        return context
+
+
+class PhotoGalleryUpdateView(generic.UpdateView):
+    model=PhotoGallery
+    template_name='foradmin/photo_gallery_update.html'
+    form_class=PhotoGalleryForm
+    success_url=reverse_lazy('photo_gallery')
+
+    def get_context_data(self, **kwargs):
+        context= super().get_context_data(**kwargs)
+        context['about']=AboutHotel.objects.latest('id')
+        return context
+
+class PhotoGalleryDeleteView(generic.DeleteView):
+    model=PhotoGallery
+    template_name='foradmin/delete.html'
+    success_url=reverse_lazy('photo_gallery')
+
+    def get_context_data(self, **kwargs):
+        context= super().get_context_data(**kwargs)
+        context['about']=AboutHotel.objects.latest('id')
+        return context
+
+class PhotoGalleryCreateView(generic.CreateView):
+    model=PhotoGallery
+    template_name='foradmin/create.html'
+    form_class=PhotoGalleryForm
+    success_url=reverse_lazy('photo_gallery')
+
+    def get_context_data(self, **kwargs):
+        context= super().get_context_data(**kwargs)
+        context['about']=AboutHotel.objects.latest('id')
+        return context
+
+
+class PhotoGalleryListView(generic.ListView):
+    model=PhotoGallery
+    template_name='foradmin/photo_gallery.html'
+
+    def get_context_data(self, **kwargs):
+        context= super().get_context_data(**kwargs)
+        context['about']=AboutHotel.objects.latest('id')
+        context['photo_gallery']=PhotoGallery.objects.all()
+        return context
+
+
+
+class ContactUsListView(generic.ListView):
+    model=ContactUs
+    template_name='foradmin/contact.html'
+
+    def get_context_data(self, **kwargs):
+        context= super().get_context_data(**kwargs)
+        context['about']=AboutHotel.objects.latest('id')
+        context['contact']=ContactUs.objects.all()
+        return context
+
+class ContactUsDeleteView(generic.DeleteView):
+    model=ContactUs
+    template_name='foradmin/delete.html'
+    success_url=reverse_lazy('all_messages')
+
+
+    def get_context_data(self, **kwargs):
+        context= super().get_context_data(**kwargs)
+        context['about']=AboutHotel.objects.latest('id')
+        context['contact']=ContactUs.objects.all()
+        return context
+
+def user_login_view(request):
+
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            try:
+                user = authenticate(username=username, password=password)
+                login(request, user)
+                return redirect('home')
+            except:
+                messages.error(request, 'Не правильный логин или пароль')
+    form = LoginForm()
+    about=AboutHotel.objects.latest('id')
+
+    return render(request, 'foradmin/login.html', {'form': form,'about':about})
+
+

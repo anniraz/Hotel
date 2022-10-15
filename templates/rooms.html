@@ -40,7 +40,7 @@
                 <div class="item">
                     <div class="position-re o-hidden"> <img style="height: 255px;" src="{{r.photo.url}}" alt=""> </div> <span class="category"><a href="{% url 'reservation' r.id  %}">Book</a></span>
                     <div class="con">
-                        <h6><a href="room-details.html">{{r.price}}som / Night</a></h6>
+                        <h6><a href="{% url 'room_detail' r.id%}">{{r.price}}som / Night</a></h6>
                         <h5><a href="{% url 'room_detail' r.id%}">{{r.room}}</a> </h5>
                         <div class="line"></div>
                         <div class="row facilities">
@@ -53,7 +53,7 @@
                                 </ul>
                             </div>
                             <div class="col col-md-5 text-right">
-                                <div class="permalink"><a href="room-details.html">Details <i class="ti-arrow-right"></i></a></div>
+                                <div class="permalink"><a href="{% url 'room_detail' r.id%}">Details <i class="ti-arrow-right"></i></a></div>
                             </div>
                         </div>
                     </div>
@@ -65,7 +65,7 @@
                 <div class="item" style="height: 355px ;">
                     <div class="position-re o-hidden"> <img style="height: 300;" src="{{r.photo.url}}"  alt=""> </div> <span class="category"><a href="{% url 'reservation' r.id  %}">Book</a></span>
                     <div class="con">
-                        <h6><a href="room-details.html">{{r.price}}som / Night</a></h6>
+                        <h6><a href="{% url 'room_detail' r.id%}">{{r.price}}som / Night</a></h6>
                         <h5><a href="{% url 'room_detail' r.id%}">{{r.room}}</a></h5>
                         <div class="line"></div>
                         <div class="row facilities">
@@ -78,15 +78,36 @@
                                 </ul>
                             </div>
                             <div class="col col-md-5 text-right">
-                                <div class="permalink"><a href="room-details.html">Details <i class="ti-arrow-right"></i></a></div>
+                                <div class="permalink"><a href="{% url 'room_detail' r.id%}">Details <i class="ti-arrow-right"></i></a></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             {% endfor%}
+
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-12 text-center">
+    
+            <!-- Pagination -->
+            <ul class="news-pagination-wrap align-center mb-30 mt-30">
+                {% if all_rooms.has_previous %}
+                <li><a href="?page={{ all_rooms.previous_page_number }}"><i class="ti-angle-left"></i></a></li>
+                {% endif%}
+                {% for p in all_rooms.paginator.page_range%}
+                 <li><a href="?page={{p}}">{{p}}</a></li>
+      
+                {% endfor %}
+                {% if all_rooms.has_next %}
+                <li><a href="?page={{ all_rooms.next_page_number }}"><i class="ti-angle-right"></i></a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+
 </section>
 
 

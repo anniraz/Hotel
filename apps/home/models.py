@@ -6,6 +6,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 
 
 class SocialAccaunts(models.Model):
+    
     title=models.CharField(max_length=100)
     icon=models.ImageField(upload_to='icons/')
     link=models.CharField(max_length=1000)
@@ -68,6 +69,7 @@ class TeamsSocialAccaunts(models.Model):
         return f'{self.title}'
 
 class OurTeam(models.Model):
+
     image=models.ImageField(upload_to='our_team/')
     full_name=models.CharField(max_length=100)
     job=models.CharField(max_length=255)
@@ -86,6 +88,7 @@ class OurTeam(models.Model):
 
 
 class ExtraServicesInfo(models.Model):
+
     title=models.CharField(max_length=100)
     description=models.TextField()
 
@@ -119,7 +122,7 @@ class ExtraServices(models.Model):
 
 
 class ContactUs(models.Model):
-    
+
     name=models.CharField(max_length=100)
     email=models.EmailField()
     phone=models.PositiveIntegerField()
@@ -150,3 +153,5 @@ class Reviews(models.Model):
 
     def __str__(self):
         return f"{self.full_name} {self.rating}"
+
+

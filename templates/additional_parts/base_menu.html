@@ -19,14 +19,14 @@
             <a href="{% url 'home' %}">
                 <!-- <img src="img/logo-dark.png" class="logo-img" alt=""> -->
                 <div> <i class="star"></i> <i class="star"></i> <i class="star"></i> <i class="star"></i> <i class="star"></i> </div>
-                <h2>The Cappa<span>Luxury Hotel</span></h2>
+                <h2>The Cappa<span> Luxury Hotel</span></h2>
             </a>
         </div>
         <!-- Menu -->
         <nav class="cappa-main-menu">
             <ul>
-                <li ><a href="{% url 'home' %}">Home</a>
-                </li>
+                <li ><a href="{% url 'home' %}">Home</a></li>
+                
                 <li><a href="{% url 'about' %}">About</a></li>
                 <li><a href="{% url  'rooms' %}"> Rooms & Suites </a>
                 </li>
@@ -36,6 +36,11 @@
                 <li ><a href="{% url 'news'%}">News</a>
                 </li>
                 <li><a href="{% url 'contact'%}">Contact</a></li>
+                {% if user.is_superuser %}
+                <li ><a href="{% url 'admins' %}">Admin</a></li>
+                {% else %}
+                <p><a href="{% url 'admins_login' %}">Admin</a></p>
+                {% endif %}
             </ul>
         </nav>
 

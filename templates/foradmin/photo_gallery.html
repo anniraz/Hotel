@@ -1,0 +1,49 @@
+
+{% extends 'base.html' %}
+{% block main %}
+
+<div id="cappa-main">
+
+    <div class="banner-header section-padding bg-position-bottom valign bg-img bg-fixed" data-overlay-dark="4" data-background="{{about.photo.url}}">
+        <div class="container">
+        <div class="row">
+            <div class="col-md-12 caption mt-90">
+                <h5>Luxury Hotel</h5>
+                <h1>Image Gallery</h1>               
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div style="margin-top: 50px;"></div>
+<div class="butn-dark">  <a href="{% url 'photo_create' %}"> <span>Create new</span></a></div>
+<div style="margin-top: 100px;"></div>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="row">
+            
+
+            <!-- 2 columns -->
+            {%for i in photo_gallery%}
+            
+            <div class="col-md-6 gallery-item">
+                <a href="{{i.image.url}}" title="" class="img-zoom">
+                    <div class="gallery-box">
+                        <div class="gallery-img"> <img style="height: 255px;width:455px;object-fit: cover;" src="{{i.image.url}}" class="img-fluid mx-auto d-block" alt="work-img"> </div>
+                    </div>
+                    <a href="{% url 'photo_gallery_update' i.id %}"><p>Update</p></a> 
+                    <br>
+                    <a href="{% url 'photo_delete' i.id %}"><p>Delete</p></a> 
+                </a>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock %}

@@ -1,0 +1,51 @@
+
+{% extends 'base.html' %}
+{% block main %}
+
+<div id="cappa-main">
+
+    <div class="banner-header section-padding bg-position-bottom valign bg-img bg-fixed" data-overlay-dark="4" data-background="{{about.photo.url}}">
+        <div class="container">
+        <div class="row">
+            <div class="col-md-12 caption mt-90">
+                <h5>Luxury Hotel</h5>
+                <h1>Clubs Settings</h1>               
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div style="margin-top: 50px;"></div>
+<div class="butn-dark">  <a href="{% url 'club_create' %}"> <span>Create new</span></a></div>
+<div style="margin-top: 100px;"></div>
+<section class="services section-padding2">
+    <div class="container">
+        {% for i in clubs %}
+        <div class="row">
+            <div class="col-md-6 p-0 animate-box" data-animate-effect="fadeInLeft">
+                <div class="img left">
+                    <a href="#"><img src="{{i.photo.url}}" alt=""></a>
+                </div>
+            </div>
+            <div class="col-md-6 p-0 bg-cream valign animate-box" data-animate-effect="fadeInRight">
+                <div class="content">
+                    <div class="cont text-left">
+                        <div class="info">
+                            <h6>Discover</h6>
+                        </div>
+                        <h4>{{i.title}}</h4>
+                        <p>{{i.description|truncatewords:10|safe}}</p>
+                        <p><span class="flaticon-clock"></span> Daily: {{i.from_time}} to {{i.to_time}} pm </p>
+                        <div class="butn-dark"> <a href="{% url 'club_update' i.id %}"><span>Update</span></a> </div>
+                        <div class="butn-dark"> <a href="{% url 'club_delete' i.id %}"><span>Delete</span></a> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {%endfor%}
+
+    </div>
+</section>
+
+{% endblock %}

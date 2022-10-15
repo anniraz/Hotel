@@ -1,0 +1,73 @@
+
+{% extends 'base.html' %}
+{% block main %}
+
+<div id="cappa-main">
+
+    <div class="banner-header section-padding bg-position-bottom valign bg-img bg-fixed" data-overlay-dark="4" data-background="{{about.photo.url}}">
+        <div class="container">
+        <div class="row">
+            <div class="col-md-12 caption mt-90">
+                <h5>Luxury Hotel</h5>
+                <h1>News</h1>               
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div style="margin-top: 50px;"></div>
+<div class="butn-dark">  <a href="{% url 'news_create' %}"> <span>Create new</span></a></div>
+<div style="margin-top: 100px;"></div>
+
+ 
+<section class="news section-padding bg-black">
+  
+    <div class="container">
+        <div class="row">
+            {% for i in news%}
+            <div class="col-md-4 mb-30">
+                <div class="item">
+                        <div class="position-re o-hidden"> <img style="height: 300px; object-fit: cover;" src="{{i.image.url}}" alt="">
+                            <div class="date">
+                                <a href="#"> <span>Dec</span> <i>02</i> </a>
+                            </div>
+                        </div>
+                        <div  style="height: 200px;" class="con"> <span class="category">
+                                <a href="news.html">{{i.title}}</a>
+                                <a href="{% url 'news_delate' i.id %}"><h6 style="color: red;"> Delete</h6></a>
+                                <a href="{% url 'news_update' i.id %}"><h6> Update</h6></a>
+                            </span>
+                            <h5><a href="{% url 'news_update' i.id %}">{{i.description|truncatewords:5|safe}}</a></h5>
+                        </div>
+                    </div>
+            </div>
+            {% endfor %}
+
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+
+                <!-- Pagination -->
+                <ul class="news-pagination-wrap align-center mb-30 mt-30">
+                    {% if page_obj.has_previous %}
+                    <li><a href="?page={{ page_obj.previous_page_number }}"><i class="ti-angle-left"></i></a></li>
+                    {% endif%}
+                    {% for p in page_obj.paginator.page_range%}
+                     <li><a href="?page={{p}}">{{p}}</a></li>
+          
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                    <li><a href="?page={{ page_obj.next_page_number }}"><i class="ti-angle-right"></i></a></li>
+                    {% endif %}
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock %}

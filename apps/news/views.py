@@ -1,5 +1,8 @@
 import datetime
 from django.shortcuts import render,redirect
+from django.views import generic
+from django.urls import reverse_lazy
+
 from django.core.paginator import Paginator
 from django.db.models import Q
 
@@ -7,6 +10,7 @@ from apps.home.models import AboutHotel,ExtraServices,ExtraServicesInfo
 from apps.news.models import News,NewsCategory,Comments
 from apps.booking.models import HotelBooking
 from apps.rooms.models import Rooms
+from .forms import *
 
 def news(request):
 
@@ -153,4 +157,52 @@ def categoryPost(request,id):
     }
     return render(request,'news.html',context)
 
+class NewsUpdateView(generic.UpdateView):
+    model= News
+    template_name='foradmin/news_update.html'
+    form_class=NewsForm
+    success_url=reverse_lazy('news_all')
+    
+
+    def get_context_data(self, **kwargs):
+        context= super().get_context_data(**kwargs)
+        context['about']=AboutHotel.objects.latest('id')
+        return context
+
+
+class NewsDeleteView(generic.DeleteView):
+    model= News
+    template_name='foradmin/delete.html'
+    # form_class=NewsForm
+    success_url=reverse_lazy('news_all')
+    
+
+    def get_context_data(self, **kwargs):
+        context= super().get_context_data(**kwargs)
+        context['about']=AboutHotel.objects.latest('id')
+        return context
+
+
+class NewsCreateView(generic.CreateView):
+    model= News
+    template_name='foradmin/create.html'
+    form_class=NewsForm
+    success_url=reverse_lazy('news_all')
+    
+
+    def get_context_data(self, **kwargs):
+        context= super().get_context_data(**kwargs)
+        context['about']=AboutHotel.objects.latest('id')
+        return context
+
+
+class AdminNewsListView(generic.ListView):
+    model=News
+    template_name='foradmin/news.html'
+
+    def get_context_data(self, **kwargs):
+        context= super().get_context_data(**kwargs)
+        context['about']=AboutHotel.objects.latest('id')
+        context['news']=News.objects.all()
+        return context
 
